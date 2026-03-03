@@ -2,34 +2,38 @@
 <html>
 <head>
   <title>AI Voice Interview Bot</title>
-
-  <!-- Important for mobile responsiveness -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    
-    <div class="header">
+  <div class="app">
+
+    <header class="header">
       <h1>🎤 AI Interview Bot</h1>
       <p>Speak naturally. Get confident answers.</p>
-    </div>
+    </header>
 
-    <div class="chat-box">
-      <div class="chat user">
-        <span id="userText">Say something...</span>
-      </div>
-
+    <main class="chat-area" id="chatBox">
       <div class="chat bot">
-        <span id="botText">Waiting for your question...</span>
+        Waiting for your question...
       </div>
-    </div>
 
-    <button class="talk-btn" onclick="startListening()">
-      🎙 Start Talking
-    </button>
+      <div class="chat bot hidden" id="typing">
+        🤖 Bot is thinking...
+      </div>
+    </main>
+
+    <footer class="controls">
+      <button class="talk-btn" onclick="startListening()">
+        <span class="mic-icon">🎙</span>
+        <span id="btnText">Start Talking</span>
+      </button>
+
+      <div class="wave hidden" id="wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </footer>
 
   </div>
 

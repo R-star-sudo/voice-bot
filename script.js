@@ -2,12 +2,25 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
 recognition.lang = "en-US";
 
 function startListening() {
+  const btn = document.querySelector(".talk-btn");
+  btn.classList.add("listening");
+  document.getElementById("btnText").innerText = "Listening...";
+  document.getElementById("wave").classList.remove("hidden");
   recognition.start();
 }
 
 recognition.onresult = async function(event) {
+
+  const btn = document.querySelector(".talk-btn");
+  btn.classList.remove("listening");
+  document.getElementById("btnText").innerText = "Start Talking";
+  document.getElementById("wave").classList.add("hidden");
+
   const userSpeech = event.results[0][0].transcript;
-  document.getElementById("userText").innerText = userSpeech;
+
+  addMessage(userSpeech, "user");
+
+  document.getElementById("typing").classList.remove("hidden");
 
   const response = await fetch("/api/chat", {
     method: "POST",
@@ -16,10 +29,24 @@ recognition.onresult = async function(event) {
   });
 
   const data = await response.json();
-  const botReply = data.reply;
 
-  document.getElementById("botText").innerText = botReply;
+  document.getElementById("typing").classList.add("hidden");
 
-  const speech = new SpeechSynthesisUtterance(botReply);
+  addMessage(data.reply, "bot");
+
+  const speech = new SpeechSynthesisUtterance(data.reply);
   speechSynthesis.speak(speech);
 };
+
+function addMessage(text, sender) {
+  const chatBox = document.getElementById("chatBox");
+
+  const div = document.createElement("div");
+  div.classList.add("chat", sender);
+
+  div.innerText = text;
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
