@@ -1,20 +1,37 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <!-- tell the browser to size the layout to the device width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <title>Voice Bot</title>
+  <title>AI Voice Interview Bot</title>
+
+  <!-- Important for mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>🎤 Voice Interview Bot</h1>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🎤 AI Interview Bot</h1>
+      <p>Speak naturally. Get confident answers.</p>
+    </div>
 
-  <button onclick="startListening()" id="startButton">Start Talking</button>
+    <div class="chat-box">
+      <div class="chat user">
+        <span id="userText">Say something...</span>
+      </div>
 
-  <p><strong>You:</strong> <span id="userText"></span></p>
-  <p><strong>Bot:</strong> <span id="botText"></span></p>
+      <div class="chat bot">
+        <span id="botText">Waiting for your question...</span>
+      </div>
+    </div>
+
+    <button class="talk-btn" onclick="startListening()">
+      🎙 Start Talking
+    </button>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
