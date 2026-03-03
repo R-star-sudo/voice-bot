@@ -154,3 +154,49 @@ body::after {
     font-size: 0.95rem;
   }
 }
+
+/* fluid images/videos – never overflow their container */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* a centred “wrapper” with padding */
+.container {
+    width: 90%;            /* allow some gutter on very narrow screens */
+    max-width: 1200px;     /* limit it on large monitors */
+    margin: 0 auto;
+}
+
+/* basic reset for sections */
+header, nav, main, footer, section, article {
+    display: block;
+}
+
+/* flex nav‑bar example */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav li + li { margin-left: 1rem; }
+
+/* --------------------------------------------------
+   breakpoints – adjust to suit your design
+   mobile‑first: styles above apply to all devices
+   -------------------------------------------------- */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;          /* stack links */
+    }
+    /* shrink headings, add padding, hide sidebars, etc. */
+    h1 { font-size: 1.5rem; }
+    .sidebar { display: none; }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 90%; }
+    header, main, footer { padding: 0 1rem; }
+}
